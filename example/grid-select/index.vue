@@ -43,6 +43,18 @@
 
         <text class="res">{{res3}}</text>
       </div>
+
+      <category title="2 Columnas"></category>
+
+      <div class="demo">
+        <wxc-grid-select
+          :single="true"
+          :cols="2"
+          :customStyles="{width: '351px'}"
+          :list="testData4"
+          @select="params => onSelect('res3', params)">
+        </wxc-grid-select>
+      </div>
     </scroller>
   </div>
 </template>
@@ -227,6 +239,22 @@
         },
         {
           'title': '福州'
+        }
+      ],
+      testData4: [
+        {
+          'title': '上海'
+        },
+        {
+          'title': '杭州',
+          'checked': true
+        },
+        {
+          'title': 'Categoria 1',
+          'image': 'https://image.flaticon.com/icons/png/512/1197/1197437.png'
+        },
+        {
+          'title': '杭州'
         }
       ],
       customStyles: {

@@ -97,7 +97,7 @@
         let checkedCount = 0;
 
         const dList = this.list.map((item, i) => {
-          let { checked, disabled } = item;
+          let { checked, disabled, image } = item;
           disabled = !!disabled;
           // disabled为true时认为checked无效，同时单选模式下只认为第一个checked为true的为有效值
           checked = !disabled && !!checked && (!single || checkedCount === 0);
@@ -105,7 +105,8 @@
           return {
             ...item,
             checked,
-            disabled
+            disabled,
+            image
           }
         });
 

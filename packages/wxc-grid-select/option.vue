@@ -7,6 +7,7 @@
        @click="onClick"
        :accessible="true"
        :aria-label="`${title},${checked?'已选中':'未选中'}`">
+    <image v-if="image" :src="image" style="width:128px;height:128px;margin-bottom:20px" resize="cover"></image>
     <text v-if="title" class="text-title" :style="cTitleStyle">{{title}}</text>
 
     <image v-if="checked && icon" class="image-checked" :src="icon"></image>
@@ -47,6 +48,11 @@
       icon: {
         type: String,
         default: 'https://gw.alicdn.com/tfs/TB1IAByhgMPMeJjy1XdXXasrXXa-38-34.png'
+      },
+      // imagen
+      image: {
+        type: String,
+        default: ''
       },
       // 正常状态文字色值
       color: {
@@ -92,14 +98,26 @@
       disabledBackgroundColor: {
         type: String,
         default: '#f6f6f6'
+      },
+      justifyContent: {
+        type:String,
+        default: 'center'
+      },
+      alignItems: {
+        type: String,
+        default: 'center'
       }
     },
     computed: {
       cWrapperStyle () {
-        const { checked, disabled, width, height, borderColor, checkedBorderColor, disabledBorderColor, backgroundColor, checkedBackgroundColor, disabledBackgroundColor } = this;
+        const { checked, disabled, width, height, borderColor, checkedBorderColor, disabledBorderColor, backgroundColor, checkedBackgroundColor, disabledBackgroundColor,
+          image, justifyContent, alignItems } = this;
+
         return {
+          alignItems,
+          justifyContent,
           width,
-          height,
+          height: image ? (parseInt(height) + 148) + 'px' : height,
           borderColor: disabled ? disabledBorderColor : checked ? checkedBorderColor : borderColor,
           backgroundColor: disabled ? disabledBackgroundColor : checked ? checkedBackgroundColor : backgroundColor
         }
